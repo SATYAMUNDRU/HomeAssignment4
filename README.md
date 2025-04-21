@@ -2,96 +2,99 @@
 # README - Home Assignment 4 (Neural Networks and Deep Learning)
 
 ## Student Information
-**Name:** satya sri lasya mundru
-**Course:** CS5720 Neural Networks and Deep Learning  
-**Semester:** Spring 2025  
-**University:** University of Central Missouri  
-**Student ID :** 700758682
-**Submission Date:** 4/20/2025
+Name: satya sri lasya mundru
+Course: CS5720 Neural Networks and Deep Learning  
+Semester: Spring 2025  
+University: University of Central Missouri  
+Student ID : 700758682
+Submission Date: 4/21/2025
 
 ## 🔧 Description
 
 This repo contains solutions for the following NLP and Attention-related tasks:
 
-1. **NLP Preprocessing** (Tokenization, Stopword Removal, Stemming)
-2. **Named Entity Recognition** using SpaCy
-3. **Scaled Dot-Product Attention** implementation from scratch
-4. **Sentiment Analysis** using HuggingFace Transformers
+1. NLP Preprocessing (Tokenization, Stopword Removal, Stemming)
+2. Named Entity Recognition using SpaCy
+3. Scaled Dot-Product Attention implementation from scratch
+4. Sentiment Analysis using HuggingFace Transformers
 
 ## 🚀 Run Instructions
 
 - All scripts are written in Python 3
 - Install dependencies using:
 
-```bash
+bash
 pip install nltk spacy transformers
 python -m nltk.downloader punkt stopwords
 python -m spacy download en_core_web_sm
 
 
-Q1: NLP Preprocessing
-1. Difference between Stemming and Lemmatization
-
-Stemming cuts off word suffixes based on simple rules.
-
-Ex: "running" → "run"
-
-Lemmatization returns the base dictionary form of a word, using linguistic knowledge.
-
-Ex: "running" → "run" (but "better" → "good")
-
-✅ Lemmatization is more accurate but slower. Stemming is faster but may not return valid words.
-
-2. Why Remove Stop Words?
-
-✅ Useful:
-
-Speeds up processing
-
-Reduces noise in classification tasks (like spam detection or sentiment analysis)
-
-⚠️ Harmful:
-
-Can remove meaningful context in some cases (e.g., "to be or not to be" — all are stop words!)
 
 
-Q2: Named Entity Recognition (NER)
-1. NER vs POS Tagging
+## Q1) NLP Preprocessing Pipeline
+## Description:
+This project demonstrates a simple NLP preprocessing pipeline in Python using the NLTK library. The pipeline performs the following steps:
+
+1. *Tokenization* - Splits a sentence into individual words and punctuation.
+2. *Stopword Removal* - Removes common English stopwords like "the", "in", "are".
+3. *Stemming* - Reduces words to their root forms using the Porter Stemmer.
+
+## Sample Input Sentence:
+text
+"NLP techniques are used in virtual assistants like Alexa and Siri."
 
 
-NER	POS Tagging
-Finds named entities (e.g., persons, orgs, dates)	Tags parts of speech (noun, verb, etc.)
-Focuses on real-world objects	Focuses on grammar structure
-2. Real-World Applications of NER
-
-Finance: Automatically identify companies, currencies, and dates in stock market news.
-
-Search Engines: Highlight entities in queries like “CEO of Tesla in 2022”.
-
-Q3: Scaled Dot-Product Attention
-1. Why Divide by √d?
-
-To prevent large dot-product values from causing the softmax to saturate, which would result in tiny gradients and hurt learning. Dividing by √d (where d = key size) keeps values well-scaled.
-
-2. How Self-Attention Helps
-
-Self-attention lets each word attend to all other words in the sentence — so the model can learn:
-
-Context (e.g., "bank" in “river bank” vs “money bank”)
-
-Word dependencies regardless of position
-
-Q4: HuggingFace Sentiment Analysis
-1. Difference Between BERT and GPT
 
 
-Model	Architecture	Used For
-BERT	Encoder-only	Good for classification, question answering
-GPT	Decoder-only	Good for text generation, chatbots
-2. Why Use Pretrained Models?
+##Q2)Named Entity Recognition (NER) with spaCy
+## Project Description:
+This project demonstrates how to perform Named Entity Recognition (NER) using the spaCy library in Python. The script analyzes a sentence to identify named entities such as people, places, dates, and more. It prints the entity text, its label, and the character positions within the input sentence.
 
-Saves time and compute
+## Tools Used:
+- Python 3.x
+- spaCy library (en_core_web_sm model)
 
-Trained on massive datasets (e.g., Wikipedia, Books)
+## Installation:
+To install the required dependencies, run the following:
 
-Achieve high performance even with small fine-tuning datasets
+bash
+pip install spacy
+python -m spacy download en_core_web_sm
+
+
+ 
+
+#Q3)Scaled Dot-Product Attention Implementation
+## Description:
+This project implements the *Scaled Dot-Product Attention* mechanism, a core component of the Transformer architecture used in NLP and deep learning. It follows these steps:
+
+1. Computes the dot product of the *Query (Q)* and the transpose of *Key (K)*.
+2. Scales the result by dividing by the square root of the key dimension.
+3. Applies the softmax function to obtain attention weights.
+4. Multiplies the attention weights by the *Value (V)* matrix to get the final output.
+
+## Libraries Used:
+- numpy
+- scipy.special (for softmax)
+
+## Input:
+python
+Q = np.array([[1, 0, 1, 0], [0, 1, 0, 1]])
+K = np.array([[1, 0, 1, 0], [0, 1, 0, 1]])
+V = np.array([[1, 2, 3, 4], [5, 6, 7, 8]])
+
+#Q4) Sentiment Analysis Using HuggingFace Transformers
+
+
+## Description:
+This project uses the transformers library by HuggingFace to perform sentiment analysis. It utilizes a pre-trained pipeline to determine whether a sentence expresses a positive or negative sentiment.
+
+## Tools Used:
+- Python 3.x
+- HuggingFace Transformers library
+
+## Installation:
+Install the necessary library using pip:
+
+```bash
+pip install transformers
